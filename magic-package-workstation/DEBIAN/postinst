@@ -1,7 +1,6 @@
 #!/bin/bash
 
 #install docker 
-curl -s https://get.docker.com/ | bash
 usermod -aG docker krack
 
 
