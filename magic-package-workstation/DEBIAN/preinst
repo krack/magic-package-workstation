@@ -1,5 +1,4 @@
 #!/bin/bash
 
-#install sublime text
-add-apt-repository -y -u ppa:webupd8team/sublime-text-3
+
 echo "install preparation"
