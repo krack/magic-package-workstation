@@ -240,7 +240,7 @@ _apt_run() {
 
 
 #install sublime text
-add-apt-repository -y -y ppa:webupd8team/sublime-text-3
+add-apt-repository -y -u ppa:webupd8team/sublime-text-3
 
 _apt_install sublime-text-installer
 _apt_run
