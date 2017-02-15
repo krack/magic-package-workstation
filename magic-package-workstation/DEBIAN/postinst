@@ -1,10 +1,23 @@
 #!/bin/bash
 
 #install docker 
-usermod -aG docker krack
+for login in $( awk -F: '($3>=1000)&&($1!="nobody"){print $1}' /etc/passwd); do
+	usermod -aG docker $login
+done
+
+
 
 #install travis cli
 gem install travis --no-rdoc --no-ri
+
+#virtualbox*
+for login in $( awk -F: '($3>=1000)&&($1!="nobody"){print $1}' /etc/passwd); do
+	usermod -G vboxusers -a $login
+done
+
+version=$(VBoxManage --version|cut -dr -f1|cut -d'_' -f1) && wget -c http://download.virtualbox.org/virtualbox/$version/Oracle_VM_VirtualBox_Extension_Pack-$version.vbox-extpack
+VBoxManage extpack install --replace Oracle_VM_VirtualBox_Extension_Pack-$version.vbox-extpack
+rm *.vbox-extpack
 
 echo "install done"
 

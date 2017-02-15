@@ -5,4 +5,5 @@
  * docker
  * git
  * travis cli
+ * virtualbox
 
