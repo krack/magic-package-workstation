@@ -1,0 +1,46 @@
+#! /bin/bash
+function insert(){
+	local variable_name=$1
+	local variable_value=$2
+	
+	echo "export $variable_name=$variable_value" >> ~/.profile
+	echo "insert $variable_name"
+	
+}
+
+function askVariable(){
+	local variable_name=$1
+
+	if [ -z "${!variable_name}" ]; then
+		echo -n "Enter value for $variable_name and press [ENTER]: "
+		read value
+
+		insert "$variable_name" "$value" 
+	else
+		echo "$variable_name already defined"
+	fi
+	
+
+}
+
+askVariable "DOCKER_USERNAME"
+askVariable "DOCKER_PASSWORD"
+
+
+askVariable "RANCHER_URL"
+askVariable "RANCHER_ACCESS_KEY"
+askVariable "RANCHER_SECRET_KEY"
+
+
+if [ -z "$TRAVIS_TOKEN" ]; then
+	travis login
+	if [ $? -ne 0 ]; then
+	   	exit 1
+	fi
+	token=$(travis token | awk '{print $NF}')
+	insert "TRAVIS_TOKEN" "$token" 
+else
+	echo "TRAVIS_TOKEN already defined"
+fi
+
+echo "use '. ~/.profile'"

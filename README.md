@@ -6,4 +6,5 @@
  * git
  * travis cli
  * virtualbox
+ * chromium
 

@@ -4,8 +4,12 @@
 for login in $( awk -F: '($3>=1000)&&($1!="nobody"){print $1}' /etc/passwd); do
 	usermod -aG docker $login
 done
+#docker compose
+curl -L "https://github.com/docker/compose/releases/download/1.10.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose
 
-
+curl -L https://releases.rancher.com/compose/v0.12.1/rancher-compose-linux-amd64-v0.12.1.tar.gz -o rancher-compose.tar.gz
+tar -zxvf rancher-compose.tar.gz && mv ./rancher-compose-v0.12.1/rancher-compose /usr/local/bin/rancher-compose && chmod +x /usr/local/bin/rancher-compose && rm -fr ./rancher-compose-v0.12.1 && rm ./rancher-compose.tar.gz
 
 #install travis cli
 gem install travis --no-rdoc --no-ri
