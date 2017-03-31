@@ -1,0 +1,33 @@
+#!/bin/bash
+if [ -z "$TRAVIS_TOKEN" ]; then
+    echo "Need to set TRAVIS_TOKEN"
+    exit 1
+fi
+
+
+travis login --github-token $TRAVIS_TOKEN
+
+if [[ $? -ne 0 ]] ; then
+    exit 1
+fi
+#docker
+travis env set DOCKER_USERNAME $DOCKER_USERNAME -P
+travis env set DOCKER_PASSWORD $DOCKER_PASSWORD -P
+
+#rancher
+travis env set RANCHER_URL $RANCHER_URL -P
+travis env set RANCHER_ACCESS_KEY $RANCHER_ACCESS_KEY -P
+travis env set RANCHER_SECRET_KEY $RANCHER_SECRET_KEY -P
+
+travis env list
+
+#docker
+travis env set DOCKER_USERNAME $DOCKER_USERNAME -p
+travis env set DOCKER_PASSWORD $DOCKER_PASSWORD -p
+
+#rancher
+travis env set RANCHER_URL $RANCHER_URL -p
+travis env set RANCHER_ACCESS_KEY $RANCHER_ACCESS_KEY -p
+travis env set RANCHER_SECRET_KEY $RANCHER_SECRET_KEY -p
+
+travis env list
