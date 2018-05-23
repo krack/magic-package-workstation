@@ -3,7 +3,7 @@ Version: $TRAVIS_TAG
 Section: stable
 Priority: optional
 Architecture: all
-Depends: bash,curl,vim,git,ruby-dev,docker.io,sublime-text-installer,virtualbox,virtualbox-qt,virtualbox-dkms,chromium-browser
+Depends: bash,curl,vim,git,ruby-dev,docker.io,virtualbox,virtualbox-qt,virtualbox-dkms,chromium-browser
 Maintainer: Sylvain Gandon <krack_6@hotmail.com>
 Description: Tools and configuration for developp.
 Homepage: https://github.com/krack/magic-pakage-workstation
